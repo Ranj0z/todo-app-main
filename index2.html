@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Todo App</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+
+    .todo-app {
+      background: #fff;
+      width: 100%;
+      max-width: 500px;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .todo-header {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .todo-input {
+      display: flex;
+      margin-bottom: 1rem;
+    }
+
+    .todo-input input {
+      flex: 1;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px 0 0 5px;
+    }
+
+    .todo-input button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+    }
+
+    .todo-list {
+      list-style: none;
+    }
+
+    .todo-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .todo-item.completed .text {
+      text-decoration: line-through;
+      color: #999;
+    }
+
+    .todo-actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: 0.5rem;
+      color: #555;
+    }
+
+    .filters {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+    }
+
+    .filters button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      padding: 0.3rem 0.6rem;
+    }
+
+    @media (max-width: 600px) {
+      .filters {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="todo-app">
+    <div class="todo-header">Todo</div>
+    <div class="todo-input">
+      <input type="text" id="new-todo" placeholder="Add a new todo">
+      <button onclick="addTodo()">Add</button>
+    </div>
+    <ul id="todo-list" class="todo-list"></ul>
+    <div class="filters">
+      <span id="items-left">0 items left</span>
+      <div>
+        <button onclick="filterTodos('all')">All</button>
+        <button onclick="filterTodos('active')">Active</button>
+        <button onclick="filterTodos('completed')">Completed</button>
+      </div>
+      <button onclick="clearCompleted()">Clear Completed</button>
+    </div>
+  </div>
+
+  <script>
+    let todos = [];
+    let filter = 'all';
+
+    function addTodo() {
+      const input = document.getElementById('new-todo');
+      const text = input.value.trim();
+      if (text) {
+        todos.push({ text, completed: false });
+        input.value = '';
+        renderTodos();
+      }
+    }
+
+    function toggleTodo(index) {
+      todos[index].completed = !todos[index].completed;
+      renderTodos();
+    }
+
+    function deleteTodo(index) {
+      todos.splice(index, 1);
+      renderTodos();
+    }
+
+    function editTodo(index) {
+      const newText = prompt('Edit todo:', todos[index].text);
+      if (newText !== null && newText.trim() !== '') {
+        todos[index].text = newText.trim();
+        renderTodos();
+      }
+    }
+
+    function clearCompleted() {
+      todos = todos.filter(todo => !todo.completed);
+      renderTodos();
+    }
+
+    function filterTodos(type) {
+      filter = type;
+      renderTodos();
+    }
+
+    function renderTodos() {
+      const list = document.getElementById('todo-list');
+      list.innerHTML = '';
+
+      const filtered = todos.filter(todo => {
+        if (filter === 'active') return !todo.completed;
+        if (filter === 'completed') return todo.completed;
+        return true;
+      });
+
+      filtered.forEach((todo, index) => {
+        const li = document.createElement('li');
+        li.className = 'todo-item' + (todo.completed ? ' completed' : '');
+        li.innerHTML = `
+          <span class="text" onclick="toggleTodo(${index})">${todo.text}</span>
+          <div class="todo-actions">
+            <button onclick="editTodo(${index})">✏️</button>
+            <button onclick="deleteTodo(${index})">🗑️</button>
+          </div>
+        `;
+        list.appendChild(li);
+      });
+
+      document.getElementById('items-left').innerText = `${todos.filter(todo => !todo.completed).length} items left`;
+    }
+  </script>
+</body>
+</html>
