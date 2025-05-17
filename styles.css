@@ -1,0 +1,134 @@
+:root {
+  --bg: #171823;
+  --todo-bg: #25273c;
+  --text: white;
+  --input-bg: #393a4c;
+  --completed-text: #777;
+  --highlight: #3a7bfd;
+}
+
+body.light-mode {
+  --bg: #fafafa;
+  --todo-bg: #ffffff;
+  --text: #000000;
+  --input-bg: #e4e5f1;
+  --completed-text: #d1d2da;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+.background {
+  background-image: url('bg-desktop-dark.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+}
+
+body.light-mode .background {
+  background-image: url('bg-desktop-light.jpg'); /* Replace with actual light mode image */
+}
+
+.todo-container {
+  max-width: 600px;
+  margin: -130px auto 0;
+  background: var(--todo-bg);
+  border-radius: 8px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  letter-spacing: 0.5em;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.theme-toggle {
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+#new-todo {
+  width: 100%;
+  padding: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: var(--input-bg);
+  color: var(--text);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+ul#todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--input-bg);
+}
+
+.todo-item input[type="checkbox"] {
+  margin-right: 1rem;
+}
+
+.todo-item.completed span {
+  text-decoration: line-through;
+  color: var(--completed-text);
+}
+
+.todo-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: var(--completed-text);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.filters {
+  display: flex;
+  gap: 1rem;
+}
+
+.filter {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.filter.active {
+  color: var(--highlight);
+}
+
+#clear-completed {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.drag-info {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--completed-text);
+}
