@@ -28,7 +28,7 @@ body {
   font-size: 18px;
   background-color: var(--bg);
   color: var(--text);
-  transition: background 0.3s, color 0.3s;
+  transition: background-color 0.3s, 0.3s ease;
 }
 
 .background {
@@ -45,10 +45,8 @@ body.light-mode .background {
 .todo-container {
   max-width: 600px;
   margin: -130px auto 0;
-  background: var(--todo-bg);
   border-radius: 8px;
-  padding: 1.5rem 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  padding: 1.5rem 2rem; 
 }
 
 .header-row {
@@ -66,10 +64,11 @@ body.light-mode .background {
 
 .theme-toggle {
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 2rem;
+  transition: transform 0.3s ease;
 }
 
-#new-todo {
+.create-new-todo {
   width: 100%;
   padding: 1rem;
   border: none;
@@ -77,14 +76,23 @@ body.light-mode .background {
   background-color: var(--input-bg);
   color: var(--text);
   font-size: 1rem;
-  margin-bottom: 1rem;
 }
 
-ul#todo-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1rem;
+#newTodo {
+  border: none;
+  border-radius: 5px;
+  background-color: var(--input-bg);
+  color: var(--text);
+  font-size: 1rem;
 }
+
+.main-todo {
+  list-style: none;
+  padding: 01 rem;
+  border-radius: 8px;
+  background-color: var(--input-bg);
+}
+
 
 .todo-item {
   display: flex;
@@ -105,6 +113,8 @@ ul#todo-list {
 
 .todo-footer {
   display: flex;
+  padding: 1rem;
+  border-radius: 8px;
   justify-content: space-between;
   align-items: center;
   font-size: 0.9rem;
@@ -116,7 +126,9 @@ ul#todo-list {
 .filters {
   display: flex;
   gap: 1rem;
+  justify-content: center;
 }
+
 
 .filter {
   background: none;
