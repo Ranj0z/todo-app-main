@@ -1,23 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
+
 :root {
-  --bg: #171823;
-  --todo-bg: #25273c;
-  --text: white;
-  --input-bg: #393a4c;
-  --completed-text: #777;
-  --highlight: #3a7bfd;
+  --bright-blue: hsl(220, 98%, 61%);
+  --check-gradient: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+
+  /* Dark Theme Colors */
+  --bg: hsl(235, 21%, 11%);
+  --todo-bg: hsl(235, 24%, 19%);
+  --text: hsl(234, 39%, 85%);
+  --input-bg: hsl(237, 14%, 26%);
+  --completed-text: hsl(234, 11%, 52%);
+  --highlight: var(--bright-blue);
 }
 
 body.light-mode {
-  --bg: #fafafa;
-  --todo-bg: #ffffff;
-  --text: #000000;
-  --input-bg: #e4e5f1;
-  --completed-text: #d1d2da;
+  /* Light Theme Colors */
+  --bg: hsl(0, 0%, 98%);
+  --todo-bg: hsl(0, 0%, 100%);
+  --text: hsl(235, 19%, 35%);
+  --input-bg: hsl(236, 33%, 92%);
+  --completed-text: hsl(233, 11%, 84%);
 }
 
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 18px;
   background-color: var(--bg);
   color: var(--text);
   transition: background 0.3s, color 0.3s;
@@ -31,7 +39,7 @@ body {
 }
 
 body.light-mode .background {
-  background-image: url('bg-desktop-light.jpg'); /* Replace with actual light mode image */
+  background-image: url('bg-desktop-light.jpg');
 }
 
 .todo-container {
@@ -87,6 +95,7 @@ ul#todo-list {
 
 .todo-item input[type="checkbox"] {
   margin-right: 1rem;
+  accent-color: var(--bright-blue);
 }
 
 .todo-item.completed span {
