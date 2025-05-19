@@ -129,8 +129,10 @@ body.light-mode .background {
 }
 
 .main-todo {
+  
   list-style: none;
   padding: 01 rem;
+  width: 100%;
   border-radius: 8px;
   background-color: var(--input-bg);
 }
@@ -144,7 +146,7 @@ body.light-mode .background {
   display: flex;
   align-items: center;
   border-bottom: 1px solid var(--completed-text);
-  padding-left: 0;
+  padding-left: 15px;
   padding-right: 0;
   padding-top: 1rem;
   padding-bottom: 1rem;
