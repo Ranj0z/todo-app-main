@@ -2,7 +2,7 @@
 
 :root {
   --bright-blue: hsl(220, 98%, 61%);
-  --check-gradient: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  --check-gradient: linear-gradient(135deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 
   /* Dark Theme Colors */
   --bg: hsl(235, 21%, 11%);
@@ -69,21 +69,63 @@ body.light-mode .background {
 }
 
 .create-new-todo {
-  width: 100%;
-  padding: 1rem;
-  border: none;
-  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* space between checkbox and input */
   background-color: var(--input-bg);
-  color: var(--text);
-  font-size: 1rem;
+  border-radius: 5px;
+  padding: 1rem;
+  width: 100%;
 }
 
-#newTodo {
+.create-new-todo input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--bright-blue);
+  background: none;
+  accent-color: var(--bright-blue);
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+}
+
+.create-new-todo input[type="checkbox"]:checked {
+  background: var(--check-gradient);
   border: none;
+  position: relative;
+}
+
+/* Show a checkmark instead of a dot */
+.create-new-todo input[type="checkbox"]:checked::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  border-radius: 0;
+  background: none;
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(45deg);
+  transition: opacity 0.2s;
+}
+
+#new-todo {
+  border: none;
+  outline: none;
   border-radius: 5px;
   background-color: var(--input-bg);
   color: var(--text);
   font-size: 1rem;
+  width: 100%;
+  box-shadow: none;
 }
 
 .main-todo {
@@ -93,42 +135,103 @@ body.light-mode .background {
   background-color: var(--input-bg);
 }
 
+#todo-list {
+  padding-left: 0;
+  padding-right: 0;
+}
 
 .todo-item {
   display: flex;
   align-items: center;
-  padding: 1rem;
-  border-bottom: 1px solid var(--input-bg);
+  border-bottom: 1px solid var(--completed-text);
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-left: 0%; /* Added margin to the left */
+  margin-right: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.todo-item input[type="checkbox"] {
-  margin-right: 1rem;
+/* Remove border from the last item */
+.todo-item:last-child {
+  border-bottom: none;
+}
+
+/* Optional: Add padding to the content inside the todo-item */
+.todo-item > * {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.todo-item input[type="checkbox"],
+.todo-list li input[type="checkbox"] {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: 2px solid var(--bright-blue);
+  background: none;
   accent-color: var(--bright-blue);
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  margin-right: 1rem;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.todo-item.completed span {
-  text-decoration: line-through;
-  color: var(--completed-text);
+.todo-item input[type="checkbox"]:checked,
+.todo-list li input[type="checkbox"]:checked {
+  background: var(--check-gradient);
+  border: none;
+  position: relative;
+}
+
+/* Show a checkmark instead of a dot */
+.todo-item input[type="checkbox"]:checked::after,
+.todo-list li input[type="checkbox"]:checked::after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 6px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  border-radius: 0;
+  background: none;
+  opacity: 1;
+  transform: translate(-50%, -50%) rotate(45deg);
+  transition: opacity 0.2s;
 }
 
 .todo-footer {
   display: flex;
   padding: 1rem;
-  border-radius: 8px;
+  border-radius: 0px;
   justify-content: space-between;
   align-items: center;
   font-size: 0.9rem;
   color: var(--completed-text);
   flex-wrap: wrap;
   gap: 1rem;
+  border-top: 1px solid var(--completed-text); /* Add this line */
 }
 
 .filters {
   display: flex;
-  gap: 1rem;
   justify-content: center;
+  gap: 1rem;
+  background: var(--input-bg); /* Match listed items background */
+  padding: 1rem 0.5rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
 }
-
 
 .filter {
   background: none;
@@ -152,4 +255,23 @@ body.light-mode .background {
   text-align: center;
   margin-top: 1.5rem;
   color: var(--completed-text);
+}
+
+.delete-button {
+  margin-left: auto;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  background-image: url('images/icon-cross.svg'); /* adjust path if needed */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px 16px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.delete-button:hover {
+  opacity: 1;
 }

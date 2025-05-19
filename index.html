@@ -23,10 +23,8 @@
 
     <!-- Create a new To Do -->   
     <div class="create-new-todo">
-      <input type="checkbox" id="newTodo" name="newTodo">
-      <label for="newTodo">
-        <input type="text" id="newTodo" name="newTodo" placeholder="Create a new todo..">
-      </label>
+      <input type="checkbox" id="new-todo-checkbox" />
+      <input type="text" id="new-todo" placeholder="Create a new todo..." />
     </div>
 
 
@@ -36,26 +34,37 @@
         <li class="todo-item completed">
           <input type="checkbox" checked />
           <span>Complete online JavaScript course</span>
+          <button class="delete-button" aria-label="Delete"></button>
         </li>
         <li class="todo-item">
-          <input type="checkbox" />did
+          <input type="checkbox" />
           <span>Jog around the park 3x</span>
+          <button class="delete-button" aria-label="Delete"></button>
         </li>
         <li class="todo-item">
           <input type="checkbox" />
           <span>10 minutes meditation</span>
+          <button class="delete-button" aria-label="Delete"></button>
         </li>
         <li class="todo-item">
           <input type="checkbox" />
           <span>Read for 1 hour</span>
+          <button class="delete-button" aria-label="Delete"></button>
         </li>
         <li class="todo-item">
           <input type="checkbox" />
           <span>Pick up groceries</span>
+          <button class="delete-button" aria-label="Delete"></button>
         </li>
         <li class="todo-item">
           <input type="checkbox" />
           <span>Complete Todo App on Frontend Mentor</span>
+          <button class="delete-button" aria-label="Delete"></button>
+        </li>
+        <li class="todo-item">
+          <input type="checkbox" />
+          <span>Todo text</span>
+          <button class="delete-button" aria-label="Delete"></button>
         </li>
       </ul>
 
@@ -68,10 +77,10 @@
 
     <!-- Filters -->
     <div class="filters">
-        <button class="filter active">All</button>
-        <button class="filter">Active</button>
-        <button class="filter">Completed</button>
-      </div>
+      <button class="filter active" id="filter-all">All</button>
+      <button class="filter" id="filter-active">Active</button>
+      <button class="filter" id="filter-completed">Completed</button>
+    </div>
       
     <p class="drag-info">Drag and drop to reorder list</p>
   </main>
