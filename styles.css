@@ -75,7 +75,7 @@ body.light-mode .background {
   background-color: var(--input-bg);
   border-radius: 5px;
   padding: 1rem;
-  width: calc(100%); /* Reduce width by 20px on the right */
+  width: calc(100%-20px); /* Reduce width by 20px on the right */
   box-sizing: border-box;
   margin-right: 20px; /* Visually shift it to the left by 20px */
 }
